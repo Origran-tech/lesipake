@@ -31,7 +31,7 @@ export default function Home() {
               </Link>
             </td>
             <td>
-              Tout savoir sur le jeu qui a plus de 200 milions d'éxemplaires
+              Tout savoir sur le jeu qui a plus de 200 milions d&apos;éxemplaires
               vendus
             </td>
             <td>Origran technology</td>
