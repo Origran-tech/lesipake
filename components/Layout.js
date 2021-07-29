@@ -7,7 +7,6 @@ import en from "../locales/en";
 import fr from "../locales/fr";
 export default function Layout({ children }) {
   const router = useRouter();
-  console.log(router)
   const { locale } = router;
   const t = locale === "en" ? en : fr;
   const changeLanguage = (e) => {
@@ -24,14 +23,23 @@ export default function Layout({ children }) {
         ></meta>
       </Head>
       <header className="common-header">
-        <FontAwesomeIcon icon={faBook} />{" "}
-        <Link href="/">
-          <a>{t.home}</a>
-        </Link>{" "}
-        <Link href="/articles">
-          <a>{t.lastarticle}</a>
-        </Link>{" "}
-        <select onChange={changeLanguage} defaultValue={locale}>
+        <div>
+          <FontAwesomeIcon icon={faBook} />{" "}
+          <Link href="/">
+            <a>{t.home}</a>
+          </Link>{" "}
+          <Link href="/articles">
+            <a>{t.lastarticle}</a>
+          </Link>{" "}
+          <Link href="/contribute">
+            <a>{t.lastarticle}</a>
+          </Link>{" "}
+        </div>
+        <select
+          onChange={changeLanguage}
+          defaultValue={locale}
+          className="selectnav"
+        >
           <option value="en">EN</option>
           <option value="fr">FR</option>
         </select>

@@ -6,4 +6,7 @@ export default {
     description: "Description",
     creator: "Creator",
     contributor: "Last contributor",
+    contribtitle: "Contribute",
+    gitcontrib: "Contribute on GitHub (développeurs)",
+    contribform: "Contribute by add an article",
 }

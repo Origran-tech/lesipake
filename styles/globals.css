@@ -34,6 +34,9 @@ a {
   width: 100%;
   padding: 10px;
   text-align: left;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 .common-header a {
   margin-left: 10px;
@@ -88,4 +91,24 @@ caption {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+}
+.selectnav{
+  color: white;
+  background-color: black;
+  border: none;
+}
+.selectnav option{
+  background-color: white;
+  color: black;
+}
+input, textarea {
+  border-radius: 5px;
+  background-color: rgba(255, 255, 255, 0.356);
+  border: none;
+  padding: 4px 5px;
+  transition: background-color 200ms;
+}
+input:focus, textarea:focus {
+  outline: none;
+  background-color: rgba(255, 255, 255, 0.7);
 }
