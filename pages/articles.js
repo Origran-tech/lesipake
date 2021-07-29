@@ -20,9 +20,7 @@ export default function Home(props) {
       <h1>{t.lastarticle}</h1>
       <div className="articlescontainer">
         {props.articles.map((article, index) => {
-          const articleData =
-            article._delegate._document.data.value.mapValue.fields;
-          return <Articleblock article={articleData} key={index} />;
+          return <Articleblock article={article} key={index} />;
         })}
       </div>
     </div>
@@ -48,7 +46,7 @@ export async function getServerSideProps() {
     const data = await firestore.collection("articles").get();
     const articles = [];
     data.forEach((doc) => {
-      articles.push(doc);
+      articles.push(doc.data());
     });
     return { props: { articles: JSON.parse(JSON.stringify(articles)) } };
   } catch (err) {
