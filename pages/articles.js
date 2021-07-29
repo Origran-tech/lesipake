@@ -19,10 +19,10 @@ export default function Home(props) {
       </Head>
       <h1>{t.lastarticle}</h1>
       <div className="articlescontainer">
-        {props.articles.map((article) => {
+        {props.articles.map((article, index) => {
           const articleData =
             article._delegate._document.data.value.mapValue.fields;
-          return <Articleblock article={articleData} />;
+          return <Articleblock article={articleData} key={index}/>;
         })}
       </div>
     </div>
