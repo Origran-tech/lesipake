@@ -31,7 +31,8 @@ export default async function handler(req, res) {
         res.send("error");
       }
     } catch (err) {
-      res.send("error");
+      console.log(err);
+      res.send(err);
     }
   }
 }

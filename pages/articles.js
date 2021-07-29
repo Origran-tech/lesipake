@@ -22,32 +22,37 @@ export default function Home(props) {
         {props.articles.map((article, index) => {
           const articleData =
             article._delegate._document.data.value.mapValue.fields;
-          return <Articleblock article={articleData} key={index}/>;
+          return <Articleblock article={articleData} key={index} />;
         })}
       </div>
     </div>
   );
 }
 export async function getServerSideProps() {
-  if (!firebase.apps.length) {
-    firebase.initializeApp({
-      apiKey: process.env.FIREBASE_API_KEY,
-      authDomain: "lesipake.firebaseapp.com",
-      databaseURL: process.env.FIREBASE_DATABASE_URL,
-      projectId: "lesipake",
-      storageBucket: "lesipake.appspot.com",
-      messagingSenderId: "544640446362",
-      appId: "1:544640446362:web:e1c5d42d963678fa3e5423",
-      measurementId: "G-WJJWQY1VJF",
+  try {
+    if (!firebase.apps.length) {
+      firebase.initializeApp({
+        apiKey: process.env.FIREBASE_API_KEY,
+        authDomain: "lesipake.firebaseapp.com",
+        databaseURL: process.env.FIREBASE_DATABASE_URL,
+        projectId: "lesipake",
+        storageBucket: "lesipake.appspot.com",
+        messagingSenderId: "544640446362",
+        appId: "1:544640446362:web:e1c5d42d963678fa3e5423",
+        measurementId: "G-WJJWQY1VJF",
+      });
+    } else {
+      firebase.app(); // if already initialized, use that one
+    }
+    const firestore = firebase.firestore();
+    const data = await firestore.collection("articles").get();
+    const articles = [];
+    data.forEach((doc) => {
+      articles.push(doc);
     });
-  } else {
-    firebase.app(); // if already initialized, use that one
+    return { props: { articles: JSON.parse(JSON.stringify(articles)) } };
+  } catch (err) {
+    console.log(err)
+    return { notFound: true };
   }
-  const firestore = firebase.firestore();
-  const data = await firestore.collection("articles").get();
-  const articles = [];
-  data.forEach((doc) => {
-    articles.push(doc);
-  });
-  return { props: { articles: JSON.parse(JSON.stringify(articles)) } };
 }
