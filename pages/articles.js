@@ -4,53 +4,40 @@ import styles from "../styles/Home.module.css";
 import { useRouter } from "next/router";
 import en from "../locales/en";
 import fr from "../locales/fr";
-import firebase from "firebase/app";
-import "firebase/firestore";
+import firebase from "../firebase/clientapp";
+import { useCollection } from "react-firebase-hooks/firestore";
 import Articleblock from "../components/articleblock";
 
 export default function Home(props) {
   const router = useRouter();
   const { locale } = router;
   const t = locale === "en" ? en : fr;
+  const [articles, articlesLoading, articlesError] = useCollection(
+    firebase.firestore().collection("articles"),
+    {}
+  );
+
+  let articlesData = [];
+  if (!articlesLoading && articles) {
+    articlesData = articles.docs.map((doc) => doc.data());
+  }
   return (
     <div className={styles.pagecontent}>
       <Head>
         <title>{t.lastarticle}</title>
       </Head>
       <h1>{t.lastarticle}</h1>
-      <div className="articlescontainer">
-        {props.articles.map((article, index) => {
-          return <Articleblock article={article} key={index} />;
-        })}
-      </div>
+      {articlesLoading ? (
+        <>LOADING</>
+      ) : (
+        <div className="articlescontainer">
+          {!articlesLoading &&
+            articles &&
+            articlesData.map((article, index) => {
+              return <Articleblock article={article} key={index} />;
+            })}
+        </div>
+      )}
     </div>
   );
-}
-export async function getServerSideProps() {
-  try {
-    if (!firebase.apps.length) {
-      firebase.initializeApp({
-        apiKey: process.env.FIREBASE_API_KEY,
-        authDomain: "lesipake.firebaseapp.com",
-        databaseURL: process.env.FIREBASE_DATABASE_URL,
-        projectId: "lesipake",
-        storageBucket: "lesipake.appspot.com",
-        messagingSenderId: "544640446362",
-        appId: "1:544640446362:web:e1c5d42d963678fa3e5423",
-        measurementId: "G-WJJWQY1VJF",
-      });
-    } else {
-      firebase.app(); // if already initialized, use that one
-    }
-    const firestore = firebase.firestore();
-    const data = await firestore.collection("articles").get();
-    const articles = [];
-    data.forEach((doc) => {
-      articles.push(doc.data());
-    });
-    return { props: { articles: JSON.parse(JSON.stringify(articles)) } };
-  } catch (err) {
-    console.log(err)
-    return { notFound: true };
-  }
 }
