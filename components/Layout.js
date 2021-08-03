@@ -13,7 +13,11 @@ export default function Layout({ children }) {
     const locale = e.target.value;
     router.push(router.route, router.route, { locale });
   };
-  return (
+  /*const changeTheme = (theme) => {
+    sessionStorage.setItem("background",theme)
+  }
+  var userTheme=localStorage.getItem("background")
+  */ return (
     <div>
       <Head>
         <title>Lesipake - Le wiki open source</title>
@@ -32,7 +36,7 @@ export default function Layout({ children }) {
             <a>{t.lastarticle}</a>
           </Link>{" "}
           <Link href="/contribute">
-            <a>{t.lastarticle}</a>
+            <a>{t.contribtitle}</a>
           </Link>{" "}
         </div>
         <select
@@ -43,6 +47,10 @@ export default function Layout({ children }) {
           <option value="en">EN</option>
           <option value="fr">FR</option>
         </select>
+        {/*<select onChange={changeTheme} defaultValue="green">
+          <option value="green">default</option>
+          <option value="blue">blue</option>
+        </select>*/}
       </header>
       <div>{children}</div>
       <footer className="common-footer">

@@ -28,7 +28,7 @@ export default function Home(props) {
       </Head>
       <h1>{t.lastarticle}</h1>
       {articlesLoading ? (
-        <>LOADING</>
+        <p>LOADING</p>
       ) : (
         <div className="articlescontainer">
           {!articlesLoading &&

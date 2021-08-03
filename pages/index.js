@@ -16,7 +16,7 @@ export default function Home() {
         <title>{t.title}</title>
       </Head>
       <h1>{t.title}</h1>
-      <table>
+      {/*<table>
         <tbody>
           <tr>
             <th>{t.category}</th>
@@ -38,7 +38,7 @@ export default function Home() {
             <td>Léo Malloire</td>
           </tr>
         </tbody>
-      </table>
+      </table>*/}
     </div>
   );
 }

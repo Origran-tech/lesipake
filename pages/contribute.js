@@ -27,9 +27,9 @@ export default function Home() {
         "Content-type": "application/json; charset=UTF-8",
       },
     });
-    const data = await result.json()
+    const data = await result.json();
     if (data.message === "success") {
-      setArticlePosted(true)
+      setArticlePosted(true);
     }
   };
   return (
@@ -43,46 +43,55 @@ export default function Home() {
         <>
           <p>{t.contribform}</p>
           <form>
-            <p>Titre:</p>
-            <input
-              type="text"
-              size="10"
-              maxLength="40"
-              value={title}
-              onChange={(e) => {
-                setTitle(e.target.value);
-              }}
-            />
+            <div id="contribtitle">
+              <label>{t.titlecontrib}</label>
+              <br />
+              <input
+                type="text"
+                size="10"
+                maxLength="40"
+                value={title}
+                onChange={(e) => {
+                  setTitle(e.target.value);
+                }}
+              />
+            </div>
             <br />
-            <p>Description</p>
-            <textarea
-              rows="5"
-              cols="20"
-              value={description}
-              onChange={(e) => {
-                setDescription(e.target.value);
-              }}
-            ></textarea>
+            <div id="pseudocontrib">
+              <label>{t.pseudocontrib}</label>
+              <br />
+              <input
+                type="text"
+                size="10"
+                maxLength="40"
+                value={pseudo}
+                onChange={(e) => {
+                  setPseudo(e.target.value);
+                }}
+              />
+            </div>
             <br />
-            <p>Votre pseudo:</p>
-            <input
-              type="text"
-              size="10"
-              maxLength="40"
-              value={pseudo}
-              onChange={(e) => {
-                setPseudo(e.target.value);
-              }}
-            />
+            <div id="desccontrib">
+              <label>{t.desccontrib}</label>
+              <br />
+              <textarea
+                value={description}
+                onChange={(e) => {
+                  setDescription(e.target.value);
+                }}
+              ></textarea>
+            </div>
             <br />
             <input
               type="submit"
               value="Envoyer l'article"
               onClick={handleSubmitForm}
+              className="btn"
             />
           </form>
         </>
       )}
+      <br />
       <Link href="https://github.com/Origran-tech/lesipake">
         <a>{t.gitcontrib}</a>
       </Link>

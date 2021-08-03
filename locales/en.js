@@ -9,4 +9,7 @@ export default {
     contribtitle: "Contribute",
     gitcontrib: "Contribute on GitHub (développeurs)",
     contribform: "Contribute by add an article",
+    titlecontrib: "Article's title :",
+    desccontrib: "Article's descritpion :",
+    pseudocontrib: "Your username :",
 }

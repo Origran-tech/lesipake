@@ -1,3 +1,4 @@
+
 html,
 body {
   padding: 0;
@@ -8,7 +9,7 @@ body {
   background-attachment: fixed;
   text-align: center;
   padding-top: 39.2px;
-
+  padding-bottom: 39.2px;
 }
 
 a {
@@ -41,8 +42,12 @@ a {
 .common-header a {
   margin-left: 10px;
 }
-.common-footer{
+.common-footer {
   margin-top: 39.2px;
+  position:absolute;
+  width:100%;
+  bottom:0;
+  position: fixed;
 }
 td,
 th {
@@ -81,34 +86,64 @@ caption {
   width: 400px !important;
   height: 300px !important;
 }
-.article:hover{
+.article:hover {
   box-shadow: 6px 6px 2px 6px rgba(0, 0, 0, 0.2);
 }
 .article p {
   word-break: break-all;
 }
-.articlescontainer{
+.articlescontainer {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
 }
-.selectnav{
+.selectnav {
   color: white;
   background-color: black;
   border: none;
 }
-.selectnav option{
+.selectnav option {
   background-color: white;
   color: black;
 }
-input, textarea {
+input,
+textarea {
   border-radius: 5px;
   background-color: rgba(255, 255, 255, 0.356);
   border: none;
   padding: 4px 5px;
   transition: background-color 200ms;
 }
-input:focus, textarea:focus {
+input:focus,
+textarea:focus {
   outline: none;
   background-color: rgba(255, 255, 255, 0.7);
+}
+.articlep {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  /* Addition lines for 2 line or multiline ellipsis*/
+  display: -webkit-box !important;
+  -webkit-line-clamp: 8;
+  -webkit-box-orient: vertical;
+  white-space: normal;
+}
+.btn {
+  margin: 0 auto;
+  display: block;
+  background-color: #111;
+  border-radius: 20px;
+  padding: 8px 0;
+  width: 100px;
+  color: white;
+  border: none;
+  transform: translateY(0px);
+  transition: transform 200ms;
+}
+.btn:hover {
+  transform: scale(1.1);
+}
+textarea {
+  width: 530px;
+  height: 500px;
 }
