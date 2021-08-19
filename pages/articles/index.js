@@ -1,12 +1,12 @@
 import Head from "next/head";
 import Image from "next/image";
-import styles from "../styles/Home.module.css";
+import styles from "../../styles/Home.module.css";
 import { useRouter } from "next/router";
-import en from "../locales/en";
-import fr from "../locales/fr";
-import firebase from "../firebase/clientapp";
+import en from "../../locales/en";
+import fr from "../../locales/fr";
+import firebase from "../../firebase/clientapp";
 import { useCollection } from "react-firebase-hooks/firestore";
-import Articleblock from "../components/articleblock";
+import Articleblock from "../../components/articleblock";
 
 export default function Home(props) {
   const router = useRouter();

@@ -16,6 +16,7 @@ export default function Home() {
         <title>{t.title}</title>
       </Head>
       <h1>{t.title}</h1>
+      <img src="/logo.png" className="logo"></img>
       {/*<table>
         <tbody>
           <tr>

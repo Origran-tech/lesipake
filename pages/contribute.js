@@ -34,6 +34,9 @@ export default function Home() {
   };
   return (
     <div className={styles.pagecontent}>
+      <Head>
+        <title>{t.contribtitle}</title>
+      </Head>
       <h1>{t.contribtitle}</h1>
       {articlePosted ? (
         <div>
@@ -86,7 +89,7 @@ export default function Home() {
               type="submit"
               value="Envoyer l'article"
               onClick={handleSubmitForm}
-              className="btn"
+              className="btn btnsend"
             />
           </form>
         </>

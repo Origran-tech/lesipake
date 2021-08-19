@@ -17,6 +17,7 @@ export default function Layout({ children }) {
 
   const changeTheme = (e) => {
     setBgColor(e.target.value);
+    console.log(e.target.value)
     window.localStorage.setItem("background", e.target.value);
   };
 
@@ -33,7 +34,7 @@ export default function Layout({ children }) {
 
   return (
     !isLoading && (
-      <div style={{ backgroundColor: bgColor }}>
+      <div style={{ background: bgColor }}>
         <Head>
           <title>Lesipake - Le wiki open source</title>
           <meta
@@ -64,12 +65,19 @@ export default function Layout({ children }) {
               <option value="fr">FR</option>
             </select>
 
-            <select onChange={changeTheme} value={bgColor} style={{marginLeft: '10px'}}>
-              <option value="green">default</option>
-              <option value="blue">blue</option>
+            <select
+              onChange={changeTheme}
+              value={bgColor}
+              style={{ marginLeft: "10px" }}
+              className="selectnav"
+            >
+              <option value="linear-gradient(to bottom right, #FC00FF, #00DBDE)">Origran</option>
+              <option value="linear-gradient(to bottom right, #FFAE23, #DB004D)">Fire</option>
+              <option value="linear-gradient(to bottom right, #19F0FF, #1BFF25)">Landscape</option>
+              <option value="linear-gradient(to bottom right, #521BFF, #C60BFF)">Flower</option>
             </select>
 
-            {/* <label htmlFor="color-picker" style={{ marginLeft: "10px" }}>
+            {/*<label htmlFor="color-picker" style={{ marginLeft: "10px" }}>
               thème
             </label>
             <input
@@ -84,10 +92,10 @@ export default function Layout({ children }) {
                 borderRadius: 0,
                 marginLeft: '5px'
               }}
-            /> */}
+            />*/}
           </div>
         </header>
-        <div>{children}</div>
+        <div className="main-wrapper">{children}</div>
         <footer className="common-footer">
           &copy; lesipake by origran technology
         </footer>
