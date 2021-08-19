@@ -1,8 +1,8 @@
 import en from "../locales/en";
 import fr from "../locales/fr";
 import Head from "next/head";
-import Image from "next/image";
 import Link from "next/link";
+import Image from "next/image";
 import styles from "../styles/Home.module.css";
 import { useRouter } from "next/router";
 
@@ -16,7 +16,7 @@ export default function Home() {
         <title>{t.title}</title>
       </Head>
       <h1>{t.title}</h1>
-      <img src="/logo.png" className="logo"></img>
+      <div className="logo"><Image src="/logo.png" alt="logo" width="500px" height="500px"></Image></div>
       {/*<table>
         <tbody>
           <tr>

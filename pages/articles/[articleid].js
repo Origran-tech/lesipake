@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 import styles from "../../styles/Home.module.css";
 import "material-icons/iconfont/filled.css";
-export default function articleDetail() {
+export default function ArticleDetail() {
   const [article, setArticle] = useState("");
   const router = useRouter();
   const handleclick = () => {
@@ -29,14 +29,14 @@ export default function articleDetail() {
   return (
     <div>
       <div className="navbar">
-        <button onClick={handleclick} className="artprec" className="btn">
+        <button onClick={handleclick} className="artprec btn">
           <span className="material-icons">skip_previous</span> Article
           precedent
         </button>
-        <button onClick={handleclick} className="backbutton" className="btn">
+        <button onClick={handleclick} className="backbutton btn">
           retour
         </button>
-        <button onClick={handleclick} className="artsuiv" className="btn">
+        <button onClick={handleclick} className="artsuiv btn">
           Article suivant
           <span className="material-icons">skip_next</span>
         </button>
