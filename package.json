@@ -1,6 +1,6 @@
 {
   "name": "lesipake",
-  "version": "0.1.0",
+  "version": "0.5.1",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -12,12 +12,14 @@
     "@fortawesome/fontawesome-svg-core": "^1.2.35",
     "@fortawesome/free-solid-svg-icons": "^5.15.3",
     "@fortawesome/react-fontawesome": "^0.1.14",
+    "@material-ui/core": "^4.12.3",
     "firebase": "^8.8.0",
     "material-icons": "^1.1.1",
-    "next": "11.0.1",
+    "next": "^11.1.2",
     "react": "17.0.2",
     "react-dom": "17.0.2",
-    "react-firebase-hooks": "^3.0.4"
+    "react-firebase-hooks": "^3.0.4",
+    "react-gtm-module": "^2.0.11"
   },
   "devDependencies": {
     "eslint": "7.31.0",

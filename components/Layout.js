@@ -1,11 +1,14 @@
 import Head from "next/head";
 import Link from "next/link";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBook } from "@fortawesome/free-solid-svg-icons";
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 import en from "../locales/en";
 import fr from "../locales/fr";
+import "material-icons/iconfont/filled.css";
+import Button from "@material-ui/core/Button";
+import Menu from "@material-ui/core/Menu";
+import MenuItem from "@material-ui/core/MenuItem";
+
 export default function Layout({ children }) {
   const router = useRouter();
   const { locale } = router;
@@ -17,7 +20,7 @@ export default function Layout({ children }) {
 
   const changeTheme = (e) => {
     setBgColor(e.target.value);
-    console.log(e.target.value)
+    console.log(e.target.value);
     window.localStorage.setItem("background", e.target.value);
   };
 
@@ -31,6 +34,15 @@ export default function Layout({ children }) {
     setBgColor(window.localStorage.getItem("background") || defaultColor);
     setIsLoading(false);
   }, []);
+  const [anchorEl, setAnchorEl] = useState(null);
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
   return (
     !isLoading && (
@@ -41,10 +53,39 @@ export default function Layout({ children }) {
             name="description"
             content="Lesipake est un projet de site dictionaire open source."
           ></meta>
+          <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+          />
+          <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          />
         </Head>
         <header className="common-header">
-          <div>
-            <FontAwesomeIcon icon={faBook} />
+          <div style={{display: "flex"}}>
+          <div className="book-menu">
+            <Button
+              aria-controls="simple-menu"
+              aria-haspopup="true"
+              onClick={handleClick}
+            >
+              <span className="material-icons" style={{color: "white"}}>book</span>
+            </Button>
+            <Menu
+              id="simple-menu"
+              anchorEl={anchorEl}
+              keepMounted
+              open={Boolean(anchorEl)}
+              onClose={handleClose}
+            >
+              <MenuItem onClick={handleClose}>Profile</MenuItem>
+              <MenuItem onClick={handleClose}>My account</MenuItem>
+              <MenuItem onClick={handleClose}>Logout</MenuItem>
+            </Menu>
+          </div>
+
+          <div className="nav-div">
             <Link href="/">
               <a>{t.home}</a>
             </Link>
@@ -54,7 +95,7 @@ export default function Layout({ children }) {
             <Link href="/contribute">
               <a>{t.contribtitle}</a>
             </Link>
-          </div>
+          </div></div>
           <div>
             <select
               onChange={changeLanguage}
@@ -71,10 +112,18 @@ export default function Layout({ children }) {
               style={{ marginLeft: "10px" }}
               className="selectnav"
             >
-              <option value="linear-gradient(to bottom right, #FC00FF, #00DBDE)">Origran</option>
-              <option value="linear-gradient(to bottom right, #FFAE23, #DB004D)">Fire</option>
-              <option value="linear-gradient(to bottom right, #19F0FF, #1BFF25)">Landscape</option>
-              <option value="linear-gradient(to bottom right, #521BFF, #C60BFF)">Flower</option>
+              <option value="linear-gradient(to bottom right, #FC00FF, #00DBDE)">
+                Origran
+              </option>
+              <option value="linear-gradient(to bottom right, #FFAE23, #DB004D)">
+                Fire
+              </option>
+              <option value="linear-gradient(to bottom right, #19F0FF, #1BFF25)">
+                Landscape
+              </option>
+              <option value="linear-gradient(to bottom right, #521BFF, #C60BFF)">
+                Flower
+              </option>
             </select>
 
             {/*<label htmlFor="color-picker" style={{ marginLeft: "10px" }}>

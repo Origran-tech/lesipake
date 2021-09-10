@@ -94,6 +94,9 @@ caption {
   background-color: black;
   border: none;
 }
+select::-ms-expand {
+  background-color: red;
+}
 .selectnav option {
   background-color: white;
   color: black;
@@ -126,15 +129,14 @@ textarea:focus {
   color: #fff;
   border-radius: 5px;
   padding: 10px 25px;
-  font-family: 'Lato', sans-serif;
+  font-family: "Lato", sans-serif;
   font-weight: 500;
   background: transparent;
   cursor: pointer;
   transition: all 0.3s ease;
   position: relative;
-   box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
-   7px 7px 20px 0px rgba(0,0,0,.1),
-   4px 4px 5px 0px rgba(0,0,0,.1);
+  box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, 0.5),
+    7px 7px 20px 0px rgba(0, 0, 0, 0.1), 4px 4px 5px 0px rgba(0, 0, 0, 0.1);
   outline: none;
   border: none;
 }
@@ -143,12 +145,12 @@ textarea:focus {
   width: 2px;
 }
 .btn:hover {
-  box-shadow:  4px 4px 6px 0 rgba(255,255,255,.5),
-              -4px -4px 6px 0 rgba(116, 125, 136, .5), 
-    inset -4px -4px 6px 0 rgba(255,255,255,.2),
-    inset 4px 4px 6px 0 rgba(0, 0, 0, .4);
+  box-shadow: 4px 4px 6px 0 rgba(255, 255, 255, 0.5),
+    -4px -4px 6px 0 rgba(116, 125, 136, 0.5),
+    inset -4px -4px 6px 0 rgba(255, 255, 255, 0.2),
+    inset 4px 4px 6px 0 rgba(0, 0, 0, 0.4);
 }
-.btnsend{
+.btnsend {
   margin: 0 auto;
 }
 textarea {
@@ -181,7 +183,7 @@ h1 {
   text-align: justify;
   white-space: pre-wrap;
 }
-.navbar{
+.navbar {
   border: 3px solid rgba(0, 0, 0, 0);
   border-radius: 10px;
   padding: 20px 20px;
@@ -191,7 +193,7 @@ h1 {
   display: flex;
   justify-content: space-between;
 }
-.logo{
+.logo {
   width: 100%;
   max-width: 500px;
   margin: 0 auto;
@@ -199,4 +201,35 @@ h1 {
   margin-top: 20px;
   position: relative;
   height: 100%;
+}
+.layouticon {
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+}
+.nav-div {
+  display: flex;
+  align-items: center;
+}
+
+.nav-div {
+  display: none;
+}
+
+.book-menu {
+  color: white;
+}
+#simple-menu{
+  display: flex;
+}
+@media all and (min-width: 600px) {
+  .nav-div {
+    display: flex;
+  }
+  .book-menu:hover {
+    cursor: unset;
+  }
+  #simple-menu{
+    display: none;
+  }
 }
