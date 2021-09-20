@@ -79,9 +79,9 @@ export default function Layout({ children }) {
               open={Boolean(anchorEl)}
               onClose={handleClose}
             >
-              <MenuItem onClick={handleClose}>Profile</MenuItem>
-              <MenuItem onClick={handleClose}>My account</MenuItem>
-              <MenuItem onClick={handleClose}>Logout</MenuItem>
+              <Link href="/"><a><MenuItem onClick={handleClose}>{t.home}</MenuItem></a></Link>
+              <Link href="/articles"><a><MenuItem onClick={handleClose}>{t.lastarticle}</MenuItem></a></Link>
+              <Link href="/contribute"><a><MenuItem onClick={handleClose}>{t.contribtitle}</MenuItem></a></Link>
             </Menu>
           </div>
 
