@@ -13,7 +13,7 @@ export default function Layout({ children }) {
   const router = useRouter();
   const { locale } = router;
 
-  const defaultColor = "#00AA00";
+  const defaultColor = "#FF6F59";
 
   const [bgColor, setBgColor] = useState(defaultColor);
   const [isLoading, setIsLoading] = useState(true);
@@ -61,41 +61,60 @@ export default function Layout({ children }) {
             rel="stylesheet"
             href="https://fonts.googleapis.com/icon?family=Material+Icons"
           />
+          <link
+            href="https://fonts.googleapis.com/css2?family=Saira+Stencil+One&display=swap"
+            rel="stylesheet"
+          ></link>
         </Head>
         <header className="common-header">
-          <div style={{display: "flex"}}>
-          <div className="book-menu">
-            <Button
-              aria-controls="simple-menu"
-              aria-haspopup="true"
-              onClick={handleClick}
-            >
-              <span className="material-icons" style={{color: "white"}}>book</span>
-            </Button>
-            <Menu
-              id="simple-menu"
-              anchorEl={anchorEl}
-              keepMounted
-              open={Boolean(anchorEl)}
-              onClose={handleClose}
-            >
-              <Link href="/"><a><MenuItem onClick={handleClose}>{t.home}</MenuItem></a></Link>
-              <Link href="/articles"><a><MenuItem onClick={handleClose}>{t.lastarticle}</MenuItem></a></Link>
-              <Link href="/contribute"><a><MenuItem onClick={handleClose}>{t.contribtitle}</MenuItem></a></Link>
-            </Menu>
-          </div>
+          <div style={{ display: "flex" }}>
+            <div className="book-menu">
+              <Button
+                aria-controls="simple-menu"
+                aria-haspopup="true"
+                onClick={handleClick}
+              >
+                <span className="material-icons" style={{ color: "white" }}>
+                  book
+                </span>
+              </Button>
+              <Menu
+                id="simple-menu"
+                anchorEl={anchorEl}
+                keepMounted
+                open={Boolean(anchorEl)}
+                onClose={handleClose}
+              >
+                <Link href="/">
+                  <a>
+                    <MenuItem onClick={handleClose}>{t.home}</MenuItem>
+                  </a>
+                </Link>
+                <Link href="/articles">
+                  <a>
+                    <MenuItem onClick={handleClose}>{t.lastarticle}</MenuItem>
+                  </a>
+                </Link>
+                <Link href="/contribute">
+                  <a>
+                    <MenuItem onClick={handleClose}>{t.contribtitle}</MenuItem>
+                  </a>
+                </Link>
+              </Menu>
+            </div>
 
-          <div className="nav-div">
-            <Link href="/">
-              <a>{t.home}</a>
-            </Link>
-            <Link href="/articles">
-              <a>{t.lastarticle}</a>
-            </Link>
-            <Link href="/contribute">
-              <a>{t.contribtitle}</a>
-            </Link>
-          </div></div>
+            <div className="nav-div">
+              <Link href="/">
+                <a>{t.home}</a>
+              </Link>
+              <Link href="/articles">
+                <a>{t.lastarticle}</a>
+              </Link>
+              <Link href="/contribute">
+                <a>{t.contribtitle}</a>
+              </Link>
+            </div>
+          </div>
           <div>
             <select
               onChange={changeLanguage}
@@ -112,12 +131,7 @@ export default function Layout({ children }) {
               style={{ marginLeft: "10px" }}
               className="selectnav"
             >
-              <option value="linear-gradient(to bottom right, #FC00FF, #00DBDE)">
-                Origran
-              </option>
-              <option value="linear-gradient(to bottom right, #FFAE23, #DB004D)">
-                Fire
-              </option>
+              <option value="#FF6F59">Origran</option>
               <option value="linear-gradient(to bottom right, #19F0FF, #1BFF25)">
                 Landscape
               </option>

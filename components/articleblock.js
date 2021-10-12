@@ -1,15 +1,17 @@
+import { faWindowRestore } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
 export default function Articleblock(props) {
-  console.log(props)
+  console.log(props);
   return (
     <div className="article">
-      <Link href={`/articles/${props.article.title}`}>
-        <a>
-          <h1>{props.article.title || "Champ vide"}</h1>
-        </a>
-      </Link>
+      <h1>{props.article.title || "Champ vide"}</h1>
       <p className="articlep">{props.article.description || "Champ vide"}</p>
       <p>{props.article.pseudo || "Champ vide"}</p>
+      <form action={`/articles/${props.article.title}`}>
+        <button className="btn" type="submit">
+          More
+        </button>
+      </form>
     </div>
   );
 }
