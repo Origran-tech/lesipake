@@ -96,7 +96,7 @@ export default function Home() {
       )}
       <br />
       <Link href="https://github.com/Origran-tech/lesipake">
-        <a>{t.gitcontrib}</a>
+        <a className="contriba">{t.gitcontrib}</a>
       </Link>
     </div>
   );

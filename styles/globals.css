@@ -1,3 +1,6 @@
+.contriba{
+  text-shadow: 1px 1px black;
+}
 html,
 body {
   padding: 0;
@@ -131,33 +134,17 @@ textarea:focus {
   white-space: pre-wrap;
 }
 .btn {
-  align-items: center;
-  color: #fff;
-  border-radius: 5px;
-  padding: 10px 25px;
-  font-family: "Lato", sans-serif;
-  font-weight: 500;
-  background: #F5B316;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  position: relative;
-  box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, 0.5),
-    7px 7px 20px 0px rgba(0, 0, 0, 0.1), 4px 4px 5px 0px rgba(0, 0, 0, 0.1);
-  outline: none;
-  border: none;
-}
-.btn:before {
-  height: 0%;
-  width: 2px;
+  border-radius: 10px;
+  background: linear-gradient(145deg, #ffc018, #dda114);
+  box-shadow:  20px 20px 60px #d09813,
+               -20px -20px 60px #ffce19;
+  height: 30px;
 }
 .btn:hover {
-  box-shadow: 4px 4px 6px 0 rgba(255, 255, 255, 0.5),
-    -4px -4px 6px 0 rgba(116, 125, 136, 0.5),
-    inset -4px -4px 6px 0 rgba(255, 255, 255, 0.2),
-    inset 4px 4px 6px 0 rgba(0, 0, 0, 0.4);
-}
-.btnsend {
-  margin: 0 auto;
+  border-radius: 10px;
+  background: #f5b316;
+  box-shadow: inset 20px 20px 60px #d09813,
+              inset -20px -20px 60px #ffce19;
 }
 textarea {
   max-width: 530px;
