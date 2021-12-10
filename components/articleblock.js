@@ -5,13 +5,11 @@ export default function Articleblock(props) {
   return (
     <div className="article">
       <h1>{props.article.title || "Champ vide"}</h1>
-      <p className="articlep">{props.article.description || "Champ vide"}</p>
-      <p>{props.article.pseudo || "Champ vide"}</p>
-      <form action={`/articles/${props.article.title}`}>
-        <button className="btn" type="submit">
-          More
-        </button>
-      </form>
+      <p className="articlep">{props.article.content || "Champ vide"}</p>
+      <p>{props.article.creator || "Champ vide"}</p>
+      <Link href={`/articles/${props.article.id}`}><a>
+        <div className="btn">More</div></a>
+      </Link>
     </div>
   );
 }

@@ -7,35 +7,35 @@ import fr from "../../locales/fr";
 import firebase from "../../firebase/clientapp";
 import { useCollection } from "react-firebase-hooks/firestore";
 import Articleblock from "../../components/articleblock";
+import { useState, useEffect } from "react";
+import { supabase } from "../../utils/supabaseClient";
 
 export default function Home(props) {
+  const [articles, setArticles] = useState([]);
   const router = useRouter();
   const { locale } = router;
   const t = locale === "en" ? en : fr;
-  const [articles, articlesLoading, articlesError] = useCollection(
-    firebase.firestore().collection("articles"),
-    {}
-  );
-
+  useEffect(() => {
+    async function getArticles() {
+      const { data } = await supabase.from("articles").select("*");
+      setArticles(data);
+    }
+    getArticles();
+  }, []);
   let articlesData = [];
-  if (!articlesLoading && articles) {
-    articlesData = articles.docs.map((doc) => doc.data());
-  }
   return (
     <div className={styles.pagecontent}>
       <Head>
         <title>{t.lastarticle}</title>
       </Head>
       <h1>{t.lastarticle}</h1>
-      {articlesLoading ? (
+      {false ? (
         <p>LOADING</p>
       ) : (
         <div className="articlescontainer">
-          {!articlesLoading &&
-            articles &&
-            articlesData.map((article, index) => {
-              return <Articleblock article={article} key={index} />;
-            })}
+          {articles.map((article, index) => {
+            return <Articleblock article={article} key={index} />;
+          })}
         </div>
       )}
     </div>

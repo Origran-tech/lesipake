@@ -8,6 +8,7 @@ import "material-icons/iconfont/filled.css";
 import Button from "@material-ui/core/Button";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
+import { supabase } from "../utils/supabaseClient";
 
 export default function Layout({ children }) {
   const router = useRouter();
@@ -95,11 +96,15 @@ export default function Layout({ children }) {
                     <MenuItem onClick={handleClose}>{t.lastarticle}</MenuItem>
                   </a>
                 </Link>
-                <Link href="/contribute">
-                  <a>
-                    <MenuItem onClick={handleClose}>{t.contribtitle}</MenuItem>
-                  </a>
-                </Link>
+                {supabase.auth.session() && (
+                  <Link href="/contribute">
+                    <a>
+                      <MenuItem onClick={handleClose}>
+                        {t.contribtitle}
+                      </MenuItem>
+                    </a>
+                  </Link>
+                )}
               </Menu>
             </div>
 
@@ -110,8 +115,13 @@ export default function Layout({ children }) {
               <Link href="/articles">
                 <a>{t.lastarticle}</a>
               </Link>
-              <Link href="/contribute">
-                <a>{t.contribtitle}</a>
+              {supabase.auth.session() && (
+                <Link href="/contribute">
+                  <a>{t.contribtitle}</a>
+                </Link>
+              )}
+              <Link href="/account">
+                <a>Account</a>
               </Link>
             </div>
           </div>

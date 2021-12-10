@@ -5,95 +5,76 @@ import Image from "next/image";
 import Link from "next/link";
 import styles from "../styles/Home.module.css";
 import { useRouter } from "next/router";
-import firebase from "firebase/app";
-import "firebase/firestore";
 import { useCollectionData } from "react-firebase-hooks/firestore";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { supabase } from "../utils/supabaseClient";
 
 export default function Home() {
   const router = useRouter();
   const { locale } = router;
   const t = locale === "en" ? en : fr;
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [pseudo, setPseudo] = useState("");
-  const [articlePosted, setArticlePosted] = useState(false);
-  const handleSubmitForm = async (e) => {
-    e.preventDefault();
-    const result = await fetch("/api/postarticle", {
-      method: "POST",
-      body: JSON.stringify({ title, description, pseudo }),
-      headers: {
-        "Content-type": "application/json; charset=UTF-8",
-      },
-    });
-    const data = await result.json();
-    if (data.message === "success") {
-      setArticlePosted(true);
+  const [user, setUser] = useState(null);
+  const [posts, setPosts] = useState([]);
+  const [post, setPost] = useState({ title: "", content: "" });
+  const { title, content } = post;
+  async function fetchPosts() {
+    const { data } = await supabase.from("articles").select();
+    setPosts(data);
+  }
+  async function createPost() {
+    const { data } = await supabase
+      .from("articles")
+      .insert([{ title, content, creator: user.username }])
+      .single();
+    router.push(`/articles/${data.id}`)
+  }
+  useEffect(() => {
+    async function getUser() {
+      const { data } = await supabase
+        .from("profiles")
+        .select("username")
+        .eq("id", supabase.auth.user().id)
+        .single();
+      setUser(data);
     }
-  };
+    getUser();
+  }, []);
   return (
     <div className={styles.pagecontent}>
       <Head>
         <title>{t.contribtitle}</title>
       </Head>
       <h1>{t.contribtitle}</h1>
-      {articlePosted ? (
-        <div>
-          Votre article est pris en compte, il est en attente de modération.
-        </div>
-      ) : (
-        <>
-          <p>{t.contribform}</p>
-          <form>
-            <div id="contribtitle">
-              <label>{t.titlecontrib}</label>
-              <br />
-              <input
-                type="text"
-                size="10"
-                maxLength="40"
-                value={title}
-                onChange={(e) => {
-                  setTitle(e.target.value);
-                }}
-              />
-            </div>
-            <br />
-            <div id="pseudocontrib">
-              <label>{t.pseudocontrib}</label>
-              <br />
-              <input
-                type="text"
-                size="10"
-                maxLength="40"
-                value={pseudo}
-                onChange={(e) => {
-                  setPseudo(e.target.value);
-                }}
-              />
-            </div>
-            <br />
-            <div id="desccontrib">
-              <label>{t.desccontrib}</label>
-              <br />
-              <textarea
-                value={description}
-                onChange={(e) => {
-                  setDescription(e.target.value);
-                }}
-              ></textarea>
-            </div>
+      {user && <p>Vous publiez en tant que : {user.username}</p>}
+      <>
+        <p>{t.contribform}</p>
+        <form>
+          <div id="contribtitle">
+            <label>{t.titlecontrib}</label>
             <br />
             <input
-              type="submit"
-              value="Envoyer l'article"
-              onClick={handleSubmitForm}
-              className="btn btnsend"
+              type="text"
+              size="10"
+              maxLength="40"
+              value={title}
+              onChange={(e) => setPost({ ...post, title: e.target.value })}
             />
-          </form>
-        </>
-      )}
+          </div>
+          <br />
+          <div id="desccontrib">
+            <label>{t.desccontrib}</label>
+            <br />
+            <textarea
+              value={content}
+              onChange={(e) => setPost({ ...post, content: e.target.value })}
+            ></textarea>
+          </div>
+          <br />
+          <div onClick={createPost} className="btn">
+            Create Post
+          </div>
+        </form>
+      </>
       <br />
       <Link href="https://github.com/Origran-tech/lesipake">
         <a className="contriba">{t.gitcontrib}</a>
@@ -101,3 +82,16 @@ export default function Home() {
     </div>
   );
 }
+/*export async function getServerSideProps({ req }) {
+ const user = await supabase.auth.api.getUserByCookie(req);
+  console.log(user);
+  if (!user.user) {
+    return {
+      redirect: {
+        props: {},
+        destination: "/account?error=not_connected",
+      },
+    };
+  }
+  return { props: { user: user.user } };
+}*/
