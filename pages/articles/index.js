@@ -4,8 +4,6 @@ import styles from "../../styles/Home.module.css";
 import { useRouter } from "next/router";
 import en from "../../locales/en";
 import fr from "../../locales/fr";
-import firebase from "../../firebase/clientapp";
-import { useCollection } from "react-firebase-hooks/firestore";
 import Articleblock from "../../components/articleblock";
 import { useState, useEffect } from "react";
 import { supabase } from "../../utils/supabaseClient";
