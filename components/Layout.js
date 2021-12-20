@@ -9,8 +9,17 @@ import Button from "@material-ui/core/Button";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import { supabase } from "../utils/supabaseClient";
+import React from "react";
+import { initGA, logPageView } from '../utils/analytics'
 
 export default function Layout({ children }) {
+  useEffect(() => {
+    if (!window.GA_INITIALIZED) {
+      initGA()
+      window.GA_INITIALIZED = true
+    }
+    logPageView()
+  }, []);
   const router = useRouter();
   const { locale } = router;
 
