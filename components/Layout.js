@@ -10,15 +10,15 @@ import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import { supabase } from "../utils/supabaseClient";
 import React from "react";
-import { initGA, logPageView } from '../utils/analytics'
+import { initGA, logPageView } from "../utils/analytics";
 
 export default function Layout({ children }) {
   useEffect(() => {
     if (!window.GA_INITIALIZED) {
-      initGA()
-      window.GA_INITIALIZED = true
+      initGA();
+      window.GA_INITIALIZED = true;
     }
-    logPageView()
+    logPageView();
   }, []);
   const router = useRouter();
   const { locale } = router;
@@ -124,11 +124,9 @@ export default function Layout({ children }) {
               <Link href="/articles">
                 <a>{t.lastarticle}</a>
               </Link>
-              {supabase.auth.session() && (
-                <Link href="/contribute">
-                  <a>{t.contribtitle}</a>
-                </Link>
-              )}
+              <Link href="/contribute">
+                <a>{t.contribtitle}</a>
+              </Link>
               <Link href="/account">
                 <a>Account</a>
               </Link>

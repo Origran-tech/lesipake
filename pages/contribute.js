@@ -7,12 +7,12 @@ import styles from "../styles/Home.module.css";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { supabase } from "../utils/supabaseClient";
+import { withPageAuthRequired } from "@auth0/nextjs-auth0";
 
-export default function Home() {
+const Home = ({user}) => {
   const router = useRouter();
   const { locale } = router;
   const t = locale === "en" ? en : fr;
-  const [user, setUser] = useState(null);
   const [posts, setPosts] = useState([]);
   const [post, setPost] = useState({ title: "", content: "" });
   const { title, content } = post;
@@ -25,7 +25,7 @@ export default function Home() {
       .from("articles")
       .insert([{ title, content, creator: user.username }])
       .single();
-    router.push(`/articles/${data.id}`)
+    router.push(`/articles/${data.id}`);
   }
   useEffect(() => {
     async function getUser() {
@@ -43,8 +43,14 @@ export default function Home() {
       <Head>
         <title>{t.contribtitle}</title>
       </Head>
+      <p>
+        
+        <Link href="/api/auth/logout">
+          <a>Logout</a>
+        </Link>
+      </p>
       <h1>{t.contribtitle}</h1>
-      {user && <p>Vous publiez en tant que : {user.username}</p>}
+      <p>Vous publiez en tant que : {user.name}!</p>
       <>
         <p>{t.contribform}</p>
         <form>
@@ -94,3 +100,5 @@ export default function Home() {
   }
   return { props: { user: user.user } };
 }*/
+export const getServerSideProps = withPageAuthRequired()
+export default Home
